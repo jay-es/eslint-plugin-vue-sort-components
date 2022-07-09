@@ -1,0 +1,28 @@
+{
+  "name": "eslint-plugin-vue-sort-components",
+  "version": "1.0.0",
+  "description": "A plugin for ESLint to keep order of component names",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jay-es/eslint-plugin-vue-sort-components.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jay-es/eslint-plugin-vue-sort-components/issues"
+  },
+  "homepage": "https://github.com/jay-es/eslint-plugin-vue-sort-components#readme",
+  "devDependencies": {
+    "@types/eslint": "^8.4.5",
+    "eslint": "^8.19.0",
+    "prettier": "^2.7.1"
+  }
+}
