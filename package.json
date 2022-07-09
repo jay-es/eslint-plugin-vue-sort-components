@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "A plugin for ESLint to keep order of component names",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/",
+    "test:watch": "mocha --watch tests/"
   },
   "repository": {
     "type": "git",
@@ -23,6 +21,7 @@
   "devDependencies": {
     "@types/eslint": "^8.4.5",
     "eslint": "^8.19.0",
+    "mocha": "^10.0.0",
     "prettier": "^2.7.1"
   }
 }
