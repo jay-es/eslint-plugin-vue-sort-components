@@ -1,6 +1,8 @@
 // @ts-check
 "use strict";
 
+const naturalCompare = require("natural-compare");
+
 /**
  * @param {import('estree').Property} node
  * @returns {string}
@@ -12,6 +14,7 @@ const getKeyName = (node) =>
 module.exports = {
   meta: {
     type: "layout",
+    fixable: "code",
     messages: {
       sortComponents: "Component names must be sorted.",
     },
@@ -27,21 +30,27 @@ module.exports = {
           return;
         }
 
-        const keys = value.properties
-          .filter(
-            /** @returns {node is import('estree').Property} */
-            (node) => node.type === "Property"
-          )
-          .map((node) => getKeyName(node));
-
-        const sortedKeys = [...keys].sort();
-        const sameOrder = sortedKeys.every((v, i) => v === keys[i]);
+        const properties = value.properties.filter(
+          /** @returns {node is import('estree').Property} */
+          (node) => node.type === "Property"
+        );
+        const sorted = [...properties].sort((a, b) =>
+          naturalCompare(getKeyName(a), getKeyName(b))
+        );
+        const sameOrder = properties.every((v, i) => v === sorted[i]);
 
         if (sameOrder) return;
 
         context.report({
           node,
           messageId: "sortComponents",
+          fix(fixer) {
+            const sourceCode = context.getSourceCode();
+            const sortedCodes = sorted.map((node) => sourceCode.getText(node));
+            return properties.map((node, i) =>
+              fixer.replaceText(node, sortedCodes[i])
+            );
+          },
         });
       },
     };

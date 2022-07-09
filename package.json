@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/",
-    "test:watch": "mocha --watch tests/"
+    "test:watch": "mocha --watch --reporter min tests/"
   },
   "repository": {
     "type": "git",
