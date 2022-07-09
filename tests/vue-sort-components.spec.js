@@ -28,6 +28,11 @@ ruleTester.run("vue-sort-components", rule, {
       code: "const obj = { nested: { components: { bar, baz, foo } } }",
       parserOptions: { ecmaVersion: 6 },
     },
+    // spread
+    {
+      code: "const obj = { components: { ...others, bar, baz, foo } }",
+      parserOptions: { ecmaVersion: 2018 },
+    },
     // not components
     {
       code: "const obj = { nested: { foo, bar } }",
@@ -59,6 +64,13 @@ ruleTester.run("vue-sort-components", rule, {
       code: "const obj = { nested: { components: { foo, bar, baz } } }",
       output: "const obj = { nested: { components: { bar, baz, foo } } }",
       parserOptions: { ecmaVersion: 6 },
+      errors: [{ messageId: "sortComponents" }],
+    },
+    // spread
+    {
+      code: "const obj = { components: { bar, ...others, foo, ...others2 } }",
+      output: "const obj = { components: { ...others, ...others2, bar, foo } }",
+      parserOptions: { ecmaVersion: 2018 },
       errors: [{ messageId: "sortComponents" }],
     },
   ],

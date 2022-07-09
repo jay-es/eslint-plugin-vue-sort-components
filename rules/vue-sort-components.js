@@ -10,6 +10,29 @@ const naturalCompare = require("natural-compare");
 const getKeyName = (node) =>
   node.key.type === "Identifier" ? node.key.name : "";
 
+/**
+ * @param {import('estree').Expression} arg
+ * @returns {string}
+ */
+const getArgName = (arg) => (arg.type === "Identifier" ? arg.name : "");
+
+/**
+ * @param {import('estree').Property | import('estree').SpreadElement} a
+ * @param {import('estree').Property | import('estree').SpreadElement} b
+ * @returns {-1 | 0 | 1}
+ */
+const compareNodes = (a, b) => {
+  if (a.type === "Property" && b.type === "Property") {
+    return naturalCompare(getKeyName(a), getKeyName(b));
+  }
+
+  if (a.type === "SpreadElement" && b.type === "SpreadElement") {
+    return naturalCompare(getArgName(a.argument), getArgName(b.argument));
+  }
+
+  return a.type === "SpreadElement" ? -1 : 1;
+};
+
 /** @type {import('eslint').Rule.RuleModule} */
 module.exports = {
   meta: {
@@ -30,16 +53,13 @@ module.exports = {
           return;
         }
 
-        const properties = value.properties.filter(
-          /** @returns {node is import('estree').Property} */
-          (node) => node.type === "Property"
-        );
-        const sorted = [...properties].sort((a, b) =>
-          naturalCompare(getKeyName(a), getKeyName(b))
-        );
+        const properties = value.properties;
+        const sorted = [...properties].sort(compareNodes);
         const sameOrder = properties.every((v, i) => v === sorted[i]);
 
-        if (sameOrder) return;
+        if (sameOrder) {
+          return;
+        }
 
         context.report({
           node,
