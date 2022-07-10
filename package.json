@@ -4,6 +4,7 @@
   "description": "A plugin for ESLint to keep order of component names",
   "main": "lib/index.js",
   "scripts": {
+    "prepare": "husky install",
     "format": "prettier --check ./**/*.js",
     "lint": "eslint .",
     "test": "mocha tests/**/*.js",
@@ -20,9 +21,18 @@
     "url": "https://github.com/jay-es/eslint-plugin-vue-sort-components/issues"
   },
   "homepage": "https://github.com/jay-es/eslint-plugin-vue-sort-components#readme",
+  "lint-staged": {
+    "*.js": [
+      "prettier --check",
+      "eslint",
+      "mocha"
+    ]
+  },
   "devDependencies": {
     "@types/eslint": "^8.4.5",
     "eslint": "^8.19.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "mocha": "^10.0.0",
     "prettier": "^2.7.1"
   }
