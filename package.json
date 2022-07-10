@@ -2,12 +2,12 @@
   "name": "eslint-plugin-vue-sort-components",
   "version": "1.0.0",
   "description": "A plugin for ESLint to keep order of component names",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "format": "prettier --check ./**/*.js",
     "lint": "eslint .",
-    "test": "mocha tests/",
-    "test:watch": "mocha --watch --reporter min tests/"
+    "test": "mocha tests/**/*.js",
+    "test:watch": "mocha --watch --reporter min tests/**/*.js"
   },
   "repository": {
     "type": "git",

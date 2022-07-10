@@ -1,7 +1,7 @@
 // @ts-check
 "use strict";
 
-const rule = require("../rules/vue-sort-components");
+const rule = require("../../../lib/rules/vue-sort-components");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester();
