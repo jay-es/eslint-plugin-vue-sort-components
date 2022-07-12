@@ -23,6 +23,7 @@
     "vue",
     "sort",
     "components",
+    "auto-fix",
     "order"
   ],
   "author": "jay-es",

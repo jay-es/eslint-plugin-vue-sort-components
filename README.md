@@ -1,6 +1,7 @@
 # `eslint-plugin-vue-sort-components`
 
-A plugin for ESLint to keep order of component names.
+A plugin for ESLint to keep order of component names.  
+The rule is autofixable.
 
 ## Installation
 
