@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "format": "prettier --check ./**/*.js",
+    "format": "prettier --check ./**/*.ts",
     "lint": "eslint .",
     "test": "mocha tests/**/*.js",
     "test:watch": "mocha --watch --reporter min tests/**/*.js"

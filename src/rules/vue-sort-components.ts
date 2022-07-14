@@ -1,28 +1,17 @@
-// @ts-check
+import type { Rule } from "eslint";
+import type { Expression, Property, SpreadElement } from "estree";
+import naturalCompare from "natural-compare";
 
-"use strict";
-
-const naturalCompare = require("natural-compare");
-
-/**
- * @param {import('estree').Property} node
- * @returns {string}
- */
-const getKeyName = (node) =>
+const getKeyName = (node: Property): string =>
   node.key.type === "Identifier" ? node.key.name : "";
 
-/**
- * @param {import('estree').Expression} arg
- * @returns {string}
- */
-const getArgName = (arg) => (arg.type === "Identifier" ? arg.name : "");
+const getArgName = (arg: Expression): string =>
+  arg.type === "Identifier" ? arg.name : "";
 
-/**
- * @param {import('estree').Property | import('estree').SpreadElement} a
- * @param {import('estree').Property | import('estree').SpreadElement} b
- * @returns {-1 | 0 | 1}
- */
-const compareNodes = (a, b) => {
+const compareNodes = (
+  a: Property | SpreadElement,
+  b: Property | SpreadElement
+): -1 | 0 | 1 => {
   if (a.type === "Property" && b.type === "Property") {
     return naturalCompare(getKeyName(a), getKeyName(b));
   }
@@ -34,8 +23,7 @@ const compareNodes = (a, b) => {
   return a.type === "SpreadElement" ? -1 : 1;
 };
 
-/** @type {import('eslint').Rule.RuleModule} */
-module.exports = {
+export const sortComponentsRule: Rule.RuleModule = {
   meta: {
     type: "layout",
     fixable: "code",
