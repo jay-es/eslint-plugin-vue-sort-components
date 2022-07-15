@@ -1,13 +1,9 @@
-// @ts-check
-
-"use strict";
-
-const { RuleTester } = require("eslint");
-const rule = require("../../../lib/rules/vue-sort-components");
+import { RuleTester } from "eslint";
+import { sortComponentsRule } from "../../src/rules/vue-sort-components";
 
 const ruleTester = new RuleTester();
 
-ruleTester.run("vue-sort-components", rule, {
+ruleTester.run("vue-sort-components", sortComponentsRule, {
   valid: [
     // single
     {
