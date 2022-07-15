@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "format": "prettier --check ./**/*.ts",
+    "format": "prettier --check ./**/*.[jt]s",
     "lint": "eslint .",
     "test": "mocha",
     "test:watch": "mocha --watch --reporter min"
@@ -33,11 +33,11 @@
   },
   "homepage": "https://github.com/jay-es/eslint-plugin-vue-sort-components#readme",
   "lint-staged": {
-    "*.js": [
+    "*.[jt]s": [
       "prettier --check",
-      "eslint",
-      "mocha"
-    ]
+      "eslint"
+    ],
+    "*.ts": "mocha"
   },
   "dependencies": {
     "natural-compare": "^1.4.0"
