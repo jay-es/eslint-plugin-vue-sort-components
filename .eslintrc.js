@@ -1,4 +1,6 @@
+/** @type {import('eslint/lib/shared/types').ConfigData} */
 module.exports = {
+  ignorePatterns: "lib/*",
   env: {
     commonjs: true,
     es2021: true,
