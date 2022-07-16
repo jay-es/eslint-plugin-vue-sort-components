@@ -45,6 +45,7 @@
     "natural-compare": "^1.4.0"
   },
   "devDependencies": {
+    "@tsconfig/strictest": "^1.0.1",
     "@types/eslint": "^8.4.5",
     "@types/natural-compare": "^1.4.1",
     "@typescript-eslint/eslint-plugin": "^5.30.6",

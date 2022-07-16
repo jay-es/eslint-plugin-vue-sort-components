@@ -55,9 +55,8 @@ export const sortComponentsRule: Rule.RuleModule = {
           messageId: "sortComponents",
           fix(fixer) {
             const sourceCode = context.getSourceCode();
-            const sortedCodes = sorted.map((prop) => sourceCode.getText(prop));
             return properties.map((prop, i) =>
-              fixer.replaceText(prop, sortedCodes[i])
+              fixer.replaceText(prop, sourceCode.getText(sorted[i]))
             );
           },
         });
