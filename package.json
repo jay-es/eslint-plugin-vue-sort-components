@@ -1,6 +1,6 @@
 {
   "name": "@jay-es/eslint-plugin-vue-sort-components",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A plugin for ESLint to keep order of component names",
   "main": "lib/index.js",
   "files": [
