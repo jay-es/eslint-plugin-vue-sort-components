@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
+    "prepublishOnly": "npm run build",
     "prebuild": "node -e \"fs.rmSync('lib/', { recursive: true, force: true })\"",
     "build": "tsc",
     "format": "prettier --check ./**/*.[jt]s",
