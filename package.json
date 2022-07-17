@@ -14,7 +14,8 @@
     "format": "prettier --check ./**/*.[jt]s",
     "lint": "eslint .",
     "test": "mocha",
-    "test:watch": "mocha --watch --reporter min"
+    "test:watch": "mocha --watch --reporter min",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -34,13 +35,6 @@
     "url": "https://github.com/jay-es/eslint-plugin-vue-sort-components/issues"
   },
   "homepage": "https://github.com/jay-es/eslint-plugin-vue-sort-components#readme",
-  "lint-staged": {
-    "*.[jt]s": [
-      "prettier --check",
-      "eslint"
-    ],
-    "*.ts": "mocha"
-  },
   "dependencies": {
     "natural-compare": "^1.4.0"
   },
