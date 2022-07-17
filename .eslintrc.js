@@ -1,14 +1,29 @@
+/** @type {import('eslint/lib/shared/types').ConfigData} */
 module.exports = {
+  ignorePatterns: "lib/*",
   env: {
     commonjs: true,
     es2021: true,
     node: true,
   },
-  extends: ["eslint:recommended", "airbnb-base", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+  ],
   parserOptions: {
     ecmaVersion: "latest",
   },
   rules: {
-    strict: "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+  },
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".ts"],
+      },
+    },
   },
 };

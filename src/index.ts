@@ -1,11 +1,8 @@
-// @ts-check
+import type { ESLint } from "eslint";
 
-"use strict";
+import { sortComponentsRule } from "./rules/vue-sort-components";
 
-const sortComponentsRule = require("./rules/vue-sort-components");
-
-/** @type {import('eslint').ESLint.Plugin} */
-module.exports = {
+const plugin: ESLint.Plugin = {
   rules: {
     "vue-sort-components": sortComponentsRule,
   },
@@ -18,3 +15,5 @@ module.exports = {
     },
   },
 };
+
+export = plugin;

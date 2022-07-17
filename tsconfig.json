@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "compilerOptions": {
+    // @tsconfig/node14
+    "lib": ["es2020"],
+    "module": "commonjs",
+    "target": "es2020",
+
+    "outDir": "./lib"
+  },
+  "include": ["./src"]
+}
