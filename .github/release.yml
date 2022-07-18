@@ -1,0 +1,4 @@
+changelog:
+  categories:
+    - title: "Dependency update"
+      label: "dependencies"
