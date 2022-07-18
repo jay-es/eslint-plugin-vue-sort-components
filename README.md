@@ -63,6 +63,11 @@ export default defineComponent({
   components: { Foo, Bar, Baz },
 });
 
+// spreads must be grouped at the top
+export default defineComponent({
+  components: { Bar, Baz, Foo, ...others },
+});
+
 // not only in Vue-specific context
 const myObject = {
   components: { Foo, Bar, Baz },
@@ -76,8 +81,43 @@ export default defineComponent({
   components: { Bar, Baz, Foo },
 });
 
+// spreads must be grouped at the top
+export default defineComponent({
+  components: { ...others, Bar, Baz, Foo },
+});
+
 // not only in Vue-specific context
 const myObject = {
   components: { Bar, Baz, Foo },
 };
+```
+
+### Options
+
+This rule accepts a configuration object:
+
+```js
+{
+  "@jay-es/vue-sort-components/vue-sort-components": ["error", { sortSpreads: false }]
+}
+```
+
+- `sortSpreads` - if `true`, enforce spread properties to be sorted. Default is `false`.
+
+#### sortSpreads
+
+Examples of **incorrect** code for the `{ sortSpreads: true }` option:
+
+```js
+export default defineComponent({
+  components: { ...others2, ...others1, Bar, Baz },
+});
+```
+
+Examples of **correct** code for the `{ sortSpreads: true }` option:
+
+```js
+export default defineComponent({
+  components: { ...others1, ...others2, Bar, Baz },
+});
 ```
