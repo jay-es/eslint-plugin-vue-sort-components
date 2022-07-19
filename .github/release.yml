@@ -1,4 +1,8 @@
 changelog:
   categories:
     - title: "Dependency update"
-      label: "dependencies"
+      labels:
+        - "dependencies"
+    - title: Other Changes
+      labels:
+        - "*"
