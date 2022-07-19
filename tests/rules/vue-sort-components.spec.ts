@@ -30,7 +30,20 @@ ruleTester.run("vue-sort-components", sortComponentsRule, {
       code: "const obj = { components: { ...others, bar, baz, foo } }",
       parserOptions: { ecmaVersion: 2018 },
     },
-    // not components
+
+    // options.sortSpreads
+    {
+      code: "const obj = { components: { ...others2, ...others1, bar, baz, foo } }",
+      parserOptions: { ecmaVersion: 2018 },
+    },
+    {
+      options: [{ sortSpreads: true }],
+      code: "const obj = { components: { ...others1, ...others2, bar, baz, foo } }",
+      parserOptions: { ecmaVersion: 2018 },
+    },
+
+    // not applied
+    // non-component
     {
       code: "const obj = { nested: { foo, bar } }",
       parserOptions: { ecmaVersion: 6 },
@@ -65,8 +78,25 @@ ruleTester.run("vue-sort-components", sortComponentsRule, {
     },
     // spread
     {
-      code: "const obj = { components: { bar, ...others, foo, ...others2 } }",
-      output: "const obj = { components: { ...others, ...others2, bar, foo } }",
+      code: "const obj = { components: { bar, ...others, foo } }",
+      output: "const obj = { components: { ...others, bar, foo } }",
+      parserOptions: { ecmaVersion: 2018 },
+      errors: [{ messageId: "sortComponents" }],
+    },
+
+    // options.sortSpreads
+    {
+      code: "const obj = { components: { bar, ...others2, foo, ...others1 } }",
+      output:
+        "const obj = { components: { ...others2, ...others1, bar, foo } }",
+      parserOptions: { ecmaVersion: 2018 },
+      errors: [{ messageId: "sortComponents" }],
+    },
+    {
+      options: [{ sortSpreads: true }],
+      code: "const obj = { components: { bar, ...others2, foo, ...others1 } }",
+      output:
+        "const obj = { components: { ...others1, ...others2, bar, foo } }",
       parserOptions: { ecmaVersion: 2018 },
       errors: [{ messageId: "sortComponents" }],
     },

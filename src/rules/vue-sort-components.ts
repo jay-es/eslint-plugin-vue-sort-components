@@ -10,14 +10,17 @@ const getArgName = (arg: Expression): string =>
 
 const compareNodes = (
   a: Property | SpreadElement,
-  b: Property | SpreadElement
+  b: Property | SpreadElement,
+  sortSpreads: boolean
 ): -1 | 0 | 1 => {
   if (a.type === "Property" && b.type === "Property") {
     return naturalCompare(getKeyName(a), getKeyName(b));
   }
 
   if (a.type === "SpreadElement" && b.type === "SpreadElement") {
-    return naturalCompare(getArgName(a.argument), getArgName(b.argument));
+    return sortSpreads
+      ? naturalCompare(getArgName(a.argument), getArgName(b.argument))
+      : 0;
   }
 
   return a.type === "SpreadElement" ? -1 : 1;
@@ -27,11 +30,22 @@ export const sortComponentsRule: Rule.RuleModule = {
   meta: {
     type: "layout",
     fixable: "code",
+    schema: [
+      {
+        type: "object",
+        properties: {
+          sortSpreads: { type: "boolean" },
+        },
+        additionalProperties: false,
+      },
+    ],
     messages: {
       sortComponents: "Component names must be sorted.",
     },
   },
   create(context) {
+    const sortSpreads: boolean = context.options[0]?.sortSpreads ?? false;
+
     return {
       Property(node) {
         const { value } = node;
@@ -43,7 +57,9 @@ export const sortComponentsRule: Rule.RuleModule = {
         }
 
         const { properties } = value;
-        const sorted = [...properties].sort(compareNodes);
+        const sorted = [...properties].sort((a, b) =>
+          compareNodes(a, b, sortSpreads)
+        );
         const sameOrder = properties.every((v, i) => v === sorted[i]);
 
         if (sameOrder) {
