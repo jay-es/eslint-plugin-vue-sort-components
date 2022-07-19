@@ -1,5 +1,9 @@
 # `eslint-plugin-vue-sort-components`
 
+![CI](https://github.com/jay-es/eslint-plugin-vue-sort-components/actions/workflows/ci.yml/badge.svg?event=push)
+![NPM](https://img.shields.io/npm/l/@jay-es/eslint-plugin-vue-sort-components)
+![npm (scoped with tag)](https://img.shields.io/npm/v/@jay-es/eslint-plugin-vue-sort-components/latest)
+
 A plugin for ESLint to keep order of component names.  
 The rule is autofixable.
 
