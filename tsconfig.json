@@ -6,6 +6,9 @@
     "module": "commonjs",
     "target": "es2020",
 
+    // importsNotUsedAsValues のエラー抑制
+    "ignoreDeprecations": "5.0",
+
     "outDir": "./lib"
   },
   "include": ["./src"]
