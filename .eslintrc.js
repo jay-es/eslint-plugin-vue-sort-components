@@ -16,6 +16,10 @@ module.exports = {
     ecmaVersion: "latest",
   },
   rules: {
+    // tsconfig の verbatimModuleSyntax の代わり
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-import-type-side-effects": "error",
+
     "import/extensions": "off",
     "import/prefer-default-export": "off",
   },
