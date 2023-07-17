@@ -10,6 +10,8 @@ module.exports = {
     "eslint:recommended",
     "airbnb-base",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/strict",
+    "plugin:@typescript-eslint/stylistic",
     "prettier",
   ],
   parserOptions: {
