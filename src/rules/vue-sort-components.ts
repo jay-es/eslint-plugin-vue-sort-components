@@ -11,7 +11,7 @@ const getArgName = (arg: Expression): string =>
 const compareNodes = (
   a: Property | SpreadElement,
   b: Property | SpreadElement,
-  sortSpreads: boolean
+  sortSpreads: boolean,
 ): -1 | 0 | 1 => {
   if (a.type === "Property" && b.type === "Property") {
     return naturalCompare(getKeyName(a), getKeyName(b));
@@ -58,7 +58,7 @@ export const sortComponentsRule: Rule.RuleModule = {
 
         const { properties } = value;
         const sorted = [...properties].sort((a, b) =>
-          compareNodes(a, b, sortSpreads)
+          compareNodes(a, b, sortSpreads),
         );
         const sameOrder = properties.every((v, i) => v === sorted[i]);
 
@@ -70,9 +70,8 @@ export const sortComponentsRule: Rule.RuleModule = {
           node,
           messageId: "sortComponents",
           fix(fixer) {
-            const sourceCode = context.getSourceCode();
             return properties.map((prop, i) =>
-              fixer.replaceText(prop, sourceCode.getText(sorted[i]))
+              fixer.replaceText(prop, context.sourceCode.getText(sorted[i])),
             );
           },
         });
