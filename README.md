@@ -3,9 +3,11 @@
 ![CI](https://github.com/jay-es/eslint-plugin-vue-sort-components/actions/workflows/ci.yml/badge.svg?event=push)
 ![NPM](https://img.shields.io/npm/l/@jay-es/eslint-plugin-vue-sort-components)
 ![npm (scoped with tag)](https://img.shields.io/npm/v/@jay-es/eslint-plugin-vue-sort-components/latest)
+![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+![types: TypeScript](https://shields.io/badge/types-TypeScript-3178C6)
 
 A plugin for ESLint to keep order of component names.  
-The rule is autofixable.
+The rule is auto-fixable.
 
 ## Installation
 
@@ -56,7 +58,7 @@ Then configure the rule under the rules section.
 
 This rule checks property definitions of object expressions named `components` and verifies that all keys are sorted alphabetically.
 
-Examples of **incorrect** code for this rule:
+:thumbsdown: Examples of **incorrect** code for this rule:
 
 ```js
 export default defineComponent({
@@ -74,7 +76,7 @@ const myObject = {
 };
 ```
 
-Examples of **correct** code for this rule:
+:thumbsup: Examples of **correct** code for this rule:
 
 ```js
 export default defineComponent({
@@ -106,7 +108,7 @@ This rule accepts a configuration object:
 
 #### sortSpreads
 
-Examples of **incorrect** code for the `{ sortSpreads: true }` option:
+:thumbsdown: Examples of **incorrect** code for the `{ sortSpreads: true }` option:
 
 ```js
 export default defineComponent({
@@ -114,7 +116,7 @@ export default defineComponent({
 });
 ```
 
-Examples of **correct** code for the `{ sortSpreads: true }` option:
+:thumbsup: Examples of **correct** code for the `{ sortSpreads: true }` option:
 
 ```js
 export default defineComponent({
